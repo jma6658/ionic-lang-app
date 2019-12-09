@@ -1,0 +1,35 @@
+
+<ion-header>
+  <ion-avatar class="osmo-icon" >
+    <img src="../../../assets/icon/osmo/1.5x/osmo_OtterArtboard 1@1.5x.png">
+  </ion-avatar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngFor="let message of messages | async">
+    <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
+                                        'to': message.sentBy === 'user' }">
+        
+        <div>
+          {{ message.content }}
+        </div>
+        <div class="timestamp">
+          {{ message.timestamp}}
+        </div>
+    </div>  
+
+  </ng-container>
+</ion-content>
+
+<ion-footer>
+    <ion-item>
+      <ion-input id="input-message" [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text" placeholder="Your Message"></ion-input>
+    </ion-item>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="sendMessage()"><ion-icon name="arrow-round-forward"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
+
